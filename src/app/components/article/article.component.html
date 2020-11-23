@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <p>{{ article.description }}</p>
+            <p [innerHtml]="article.description"></p>
         </div>
     </div>
 </div>
@@ -21,7 +21,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <p>{{ getDescriptionCurrentArticle() }}</p>
+            <p [innerHtml]="getDescriptionCurrentArticle()"></p>
         </div>
     </div>
 </div>

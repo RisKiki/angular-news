@@ -1,0 +1,1 @@
+export const NB_BY_ROWS_ACCUEIL = 4;

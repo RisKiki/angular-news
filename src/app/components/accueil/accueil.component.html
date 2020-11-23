@@ -1,0 +1,11 @@
+<mat-grid-list [cols]="nbByRow" rowHeight="25em">
+    <mat-grid-tile
+        *ngFor="let article of articles"
+        [colspan]="1"
+        [rowspan]="1">
+        <app-article-preview
+            [article]="article"
+            (click)="openArticle(article)">
+        </app-article-preview>
+    </mat-grid-tile>
+</mat-grid-list>  

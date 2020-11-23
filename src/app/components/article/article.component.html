@@ -1,0 +1,29 @@
+<div class="container taille bordure" *ngIf="!isCreate()">
+    <div class="row">
+        <img [src]="article.image" alt="image" width="700em" height="350em">
+    </div>
+    <div class="row">
+        <h1 class="centerh1">{{ article.title }}</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>{{ article.description }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container taille bordure" *ngIf="isCreate()">
+    <div class="row">
+        <img [src]="getImageCurrentArticle()" [alt]="getImageCurrentArticle()" width="700em" height="350em">
+    </div>
+    <div class="row">
+        <h1 class="centerh1">{{ getTitleCurrentArticle() }}</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>{{ getDescriptionCurrentArticle() }}</p>
+        </div>
+    </div>
+</div>
+
+

@@ -1,7 +1,7 @@
 # Angular-news
 
 Application to display articles.
-The API for this project is (here)[https://github.com/RisKiki/angular-news-api].
+The API for this project is [here](https://github.com/RisKiki/angular-news-api).
 
 ## Clone
 

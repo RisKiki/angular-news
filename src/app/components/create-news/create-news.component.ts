@@ -38,19 +38,27 @@ export class CreateNewsComponent implements OnInit {
   }
 
   onSubmit() : void {
-    this.article.title       = this.creationForm.value.title
-    this.article.description = this.creationForm.value.description
-    this.article.image       = this.creationForm.value.image
-    this.articleService.setCurrentArticle(this.article);
-    this.articleService.addArticle(this.article);
-    this.router.navigate(['/article', this.article.id]);
+    this.setArticleFromForm();
+    this.articleService.addArticle(this.article)
+    .then(
+      (article : Article) => {
+        this.article = article;
+        this.articleService.setCurrentArticle(this.article);
+        this.router.navigate(['/article', this.article.id]);
+      }
+    );
+    
   }
 
   onPreview() : void { 
+    this.setArticleFromForm();
+    this.articleService.setCurrentArticle(this.article);
+  }
+
+  setArticleFromForm() : void {
     this.article.title       = this.creationForm.value.title
     this.article.description = this.creationForm.value.description
     this.article.image       = this.creationForm.value.image
-    this.articleService.setCurrentArticle(this.article);
   }
 
 }

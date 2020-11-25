@@ -24,6 +24,14 @@ export class Article {
         this.image       = _image;
     }
 
+    asJson() : any {
+        return {
+            title : this.title,
+            description : this.description,
+            image : this.image
+        }
+    }
+
     static asArticle(json : any) : Article {
         const id : number          = json['_id']
         const title : string       = json['title']

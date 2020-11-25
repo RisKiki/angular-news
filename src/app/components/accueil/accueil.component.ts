@@ -20,14 +20,20 @@ export class AccueilComponent implements OnInit {
     private articleService: ArticleService
   ) { 
     this.nbByRow  = NB_BY_ROWS_ACCUEIL;
-    this.articles = this.getArticles();
+    this.articles = [];
    }
 
   ngOnInit(): void {
+    this.getArticles();
   }
 
-  getArticles() : Array<Article> {
-    return this.articleService.getArticles();
+  getArticles() : void {
+    this.articleService.getArticles()
+    .then(
+      (articles : Array<Article>) => {
+        this.articles = articles;
+      }
+    );
   }
 
   openArticle(article : Article) : void {

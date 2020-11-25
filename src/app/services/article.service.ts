@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
 
@@ -19,24 +18,26 @@ export class ArticleService {
   ) { 
     this.articles = [];
     this.currentArticle = new Article(Tools.generateFackId());
-    this.initArticles()
   }
 
   
-  initArticles() : void {
-    this.requestApiService.get('articles/all').subscribe(
-      (x : any) => {
-        if (x.status.success === 1) {
-          this.articles = Article.asArticles(x.data)
-        } else {
-          console.error(new Error('Erreur on the route articles/all'), x.error);
-        }
+  reloadArticles() : Promise<Array<Article>> {
+    return this.requestApiService.get('articles/all')
+    .then(
+      (res : any) => {
+        const articles : Array<Article> = Article.asArticles(res.data)
+        this.articles = articles;
+        return articles
       }
     )
   }
 
-  getArticles() : Array<Article> {
-    return this.articles;
+  getArticles() : Promise<Array<Article>> {
+    if (this.articles.length === 0) {
+      return this.reloadArticles()
+    } else {
+      return Promise.resolve(this.articles);
+    }
   }
  
   getArticle(articleId : number) : Article {
@@ -47,8 +48,15 @@ export class ArticleService {
     return this.articles[index]
   }
 
-  addArticle(article : Article) : void {
-    this.articles.push(article)
+  addArticle(article : Article) : Promise<Article> {
+    return this.requestApiService.post('articles/create', article.asJson())
+    .then(
+      (res : any) => {
+        const article : Article = Article.asArticle(res['data']);
+        this.articles.push(article);
+        return article;
+      }
+    )
   }
 
   setCurrentArticle(article : Article) : void {

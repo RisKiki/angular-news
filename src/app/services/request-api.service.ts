@@ -12,11 +12,11 @@ export class RequestApiService {
     private httpClient : HttpClient
   ) { }
 
-  get(route : string) : Subscribable<Object> {
-    return this.httpClient.get(URL_API+route)
+  get(route : string) : Promise<Object> {
+    return this.httpClient.get(URL_API+route).toPromise();
   }
 
-  post(route : string, body : Object) : Subscribable<Object> {
-    return this.httpClient.post(URL_API+route, body);
+  post(route : string, body : Object) : Promise<Object> {
+    return this.httpClient.post(URL_API+route, body).toPromise();
   }
 }

@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
 
 import { Tools } from '../tools/tools';
+import { RequestApiService } from './request-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,45 +14,25 @@ export class ArticleService {
 
   currentArticle : Article;
 
-  constructor() { 
-    this.articles = this.initArticles();
+  constructor(
+    private requestApiService : RequestApiService
+  ) { 
+    this.articles = [];
     this.currentArticle = new Article(Tools.generateFackId());
+    this.initArticles()
   }
 
   
-  initArticles() : Array<Article> {
-    return [
-      new Article(
-        1,
-        "Angular",
-        "Angular est un framework développer par Google.",
-        "https://www.ambient-it.net/wp-content/uploads/2019/04/whats-new-in-angular-min.jpg"
-      ),
-      new Article(
-        2,
-        "React",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet nibh ut sapien consectetur venenatis sit amet id felis. In vitae erat tincidunt, gravida est non, efficitur lacus. Duis vitae varius neque. Sed ut auctor mauris. Sed placerat nec turpis vitae tristique. Pellentesque sit amet libero vel velit sollicitudin venenatis et ac dolor. Duis nec consequat elit, in laoreet mi. \n Sed efficitur arcu sit amet lectus ultricies finibus. Aliquam erat volutpat. Sed mi eros, dignissim at lacinia non, tincidunt faucibus eros. Integer finibus elementum malesuada. Suspendisse enim augue, volutpat ac urna et, sagittis pretium elit. Pellentesque ullamcorper vestibulum nulla..",
-        "https://www.ambient-it.net/wp-content/uploads/2019/04/whats-new-in-angular-min.jpg"
-      ),
-      new Article(
-        3,
-        "VueJs",
-        "Angular est un framework développer par Google.",
-        "https://www.ambient-it.net/wp-content/uploads/2019/04/whats-new-in-angular-min.jpg"
-      ),
-      new Article(
-      4,
-      "Toto",
-      "Angular est un framework développer par Google.",
-      "https://www.ambient-it.net/wp-content/uploads/2019/04/whats-new-in-angular-min.jpg"
-      ),
-      // new Article(
-      //   5,
-      //   "Tata",
-      //   "Angular est un framework développer par Google.",
-      //   "https://www.ambient-it.net/wp-content/uploads/2019/04/whats-new-in-angular-min.jpg"
-      // )               
-    ]
+  initArticles() : void {
+    this.requestApiService.get('articles/all').subscribe(
+      (x : any) => {
+        if (x.status.success === 1) {
+          this.articles = Article.asArticles(x.data)
+        } else {
+          console.error(new Error('Erreur on the route articles/all'), x.error);
+        }
+      }
+    )
   }
 
   getArticles() : Array<Article> {

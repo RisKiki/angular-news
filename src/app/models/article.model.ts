@@ -23,4 +23,22 @@ export class Article {
         this.description = _description;
         this.image       = _image;
     }
+
+    static asArticle(json : any) : Article {
+        const id : number          = json['_id']
+        const title : string       = json['title']
+        const description : string = json['description']
+        const image : string       = json['image']
+
+        return new Article(
+            id,
+            title,
+            description,
+            image
+        )
+    }
+
+    static asArticles(jsons : Array<any>) : Array<Article> {
+        return jsons.map((json) => this.asArticle(json));
+    }
 }

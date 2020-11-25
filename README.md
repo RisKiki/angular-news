@@ -5,7 +5,7 @@ The API for this project is [here](https://github.com/RisKiki/angular-news-api).
 
 ## Clone
 
-Run `git clone https://github.com/RisKiki/angular-news-api.git` to get the project.
+Run `git clone https://github.com/RisKiki/angular-news.git` to get the project.
 Clones should be on master, if you want the application version whitout the request to API, you have to clone the v-1.0.0-NO-API branch.
 
 ## Development server

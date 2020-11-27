@@ -17,4 +17,8 @@ export class MenuComponent implements OnInit {
     return this.loginService.isLogged();
   }
 
+  getUserName() : string {
+    return this.loginService.currentUser.name;
+  }
+
 }

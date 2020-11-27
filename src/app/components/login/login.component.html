@@ -1,28 +1,103 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()"  *ngIf="!isLogged()">
-    <div class="container">
-        <div class="row">
-            <mat-form-field appearance="outline" class="mycenter">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" formControlName="email">
-            </mat-form-field>
-        </div>
-    </div>
+<div class="container">
+    <div class="row">
 
-    <div class="container">
-        <div class="row">
-            <mat-form-field appearance="outline" class="mycenter">
-                <mat-label>Mot de Passe</mat-label>
-                <input matInput type="password" formControlName="password">
-            </mat-form-field>
-        </div>
-    </div>
+        <div class="col" *ngIf="!isLogged()">
+            <div class="container">
+                <div class="row">
+                    <h1 class="mycenter">
+                        Créer un compte
+                    </h1>
+                </div>
+            </div>
+            <br>
+            <form [formGroup]="creationForm" (ngSubmit)="submitCreation()">
+                <div class="container">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="mycenter">
+                            <mat-label>Nom</mat-label>
+                            <input matInput type="email" formControlName="name">
+                        </mat-form-field>
+                    </div>
+                </div>
+        
+                <div class="container">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="mycenter">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="email" formControlName="email">
+                        </mat-form-field>
+                    </div>
+                </div>
+        
+                <div class="container">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="mycenter">
+                            <mat-label>Mot de Passe</mat-label>
+                            <input matInput type="password" formControlName="password">
+                        </mat-form-field>
+                    </div>
+                </div>
 
-    <div class="container">
-        <div class="row">
-            <button mat-raised-button color="primary" class="mycenter" type="submit" [disabled]="!loginForm.valid">Connecter</button>
+                <div class="container" *ngIf='errorCreation'>
+                    <div class="row">
+                        <p class='mycenter mb-3 text-danger'>{{ errorCreationMessage }}</p>
+                    </div>
+                </div>
+        
+                <div class="container">
+                    <div class="row">
+                        <button mat-raised-button color="primary" class="mycenter" type='submit' [disabled]="!creationForm.valid">Créer un compte</button>
+                    </div>
+                </div>
+            </form>
         </div>
+
+        <div class="col" *ngIf="!isLogged()">
+            <div class="container">
+                <div class="row">
+                    <h1 class="mycenter">
+                        Se connecter
+                    </h1>
+                </div>
+            </div>
+            <br>
+            
+            <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+                <div class="container">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="mycenter">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="email" formControlName="email">
+                        </mat-form-field>
+                    </div>
+                </div>
+        
+                <div class="container">
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="mycenter">
+                            <mat-label>Mot de Passe</mat-label>
+                            <input matInput type="password" formControlName="password">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="container" *ngIf='errorLogin'>
+                    <div class="row">
+                        <p class='mycenter mb-3 text-danger'>{{ errorLoginMessage }}</p>
+                    </div>
+                </div>
+        
+                <div class="container">
+                    <div class="row">
+                        <button mat-raised-button color="primary" class="mycenter" type='submit' [disabled]="!loginForm.valid">Connecter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </div>
-</form>
+</div>
+    
 
 <div class="container" *ngIf="isLogged()">
     <div class="row">

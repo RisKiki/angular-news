@@ -2,7 +2,7 @@
 
 Application to display articles. \
 The API for this project is [here](https://github.com/RisKiki/angular-news-api). \
-WARNING : This application is for student experiences, DO NOT PUT PERSONNAL INFORMATION on it. \
+WARNING : This application is for student experiences, DO NOT PUT PERSONNAL INFORMATION on it. 
 
 ## Clone
 

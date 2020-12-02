@@ -4,6 +4,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { ArticleComponent } from './components/article/article.component';
 import { CreateNewsComponent } from './components/create-news/create-news.component';
 import { EditNewsComponent } from './components/edit-news/edit-news.component';
+import { Error404Component } from './components/error404/error404.component';
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:"create", component:CreateNewsComponent},
   {path:"edit", component:EditNewsComponent},
   {path:"login", component:LoginComponent},
-  {path:"article/:articleId", component:ArticleComponent}
+  {path:"article/:articleId", component:ArticleComponent},
+  {path:"**", component:Error404Component}
 ];
 
 @NgModule({

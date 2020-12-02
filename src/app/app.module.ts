@@ -26,6 +26,8 @@ import { HttpClientModule} from '@angular/common/http';
 
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { CreateNewsComponent } from './components/create-news/create-news.component';
+import { Error404Component } from './components/error404/error404.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { CreateNewsComponent } from './components/create-news/create-news.compon
     EditNewsComponent,
     ArticleComponent,
     ArticlePreviewComponent,
-    CreateNewsComponent
+    CreateNewsComponent,
+    Error404Component,
+    ContactComponent
   ],
   imports: [
     AngularEditorModule,

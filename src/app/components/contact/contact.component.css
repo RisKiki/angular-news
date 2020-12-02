@@ -1,0 +1,13 @@
+.mycenter {
+    margin: auto;
+}
+
+mat-form-field {
+    max-width: 100%;
+    width: 350em;
+    border-width: 1em !important;
+}
+
+textarea {
+    height: 400px;
+}

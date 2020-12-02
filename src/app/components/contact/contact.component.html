@@ -1,1 +1,52 @@
-<p>contact works!</p>
+
+
+<form [formGroup]="contactForm" (ngSubmit)="submit()">
+    <div class="container mb-5" *ngIf="sended">
+        <div class="row">
+            <p class="text-success h-3 mycenter">Votre message a été envoyé !</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <mat-form-field appearance="outline" class="mycenter">
+                <mat-label>Nom</mat-label>
+                <input matInput type="text" formControlName="name">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <mat-form-field appearance="outline" class="mycenter">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <mat-form-field appearance="outline" class="mycenter">
+                <mat-label>Sujet</mat-label>
+                <input matInput type="text" formControlName="subject">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <mat-form-field appearance="outline" class="mycenter">
+                <mat-label>Message</mat-label>
+                <textarea matInput type="password" formControlName="message"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <button mat-raised-button color="primary" class="mycenter" type='submit' [disabled]="!contactForm.valid">Envoyer</button>
+        </div>
+    </div>
+
+</form>

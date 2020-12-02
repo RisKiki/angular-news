@@ -37,7 +37,6 @@ export class AccueilComponent implements OnInit {
   }
 
   openArticle(article : Article) : void {
-    this.articleService.setCurrentArticle(article);
     this.router.navigate(['/article', article.id]);
   }
 

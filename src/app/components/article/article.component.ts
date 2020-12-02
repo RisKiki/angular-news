@@ -25,14 +25,18 @@ export class ArticleComponent implements OnInit {
   }
 
   initArticle() : void {
-    this.routeActivated.params.subscribe(
-      (params : any) => {
-        if (params['articleId'])
-          this.article = this.articleService.getArticle(params['articleId']);
-        else 
-        this.article = this.articleService.getCurrentArticle();
-      }
-    )
+    const params = this.routeActivated.snapshot.params
+    if (params['articleId']){
+      this.articleService.getArticle(params['articleId'])
+      .then(
+        (article : Maybe<Article>) => {
+          this.article = article
+        }
+      );
+    }
+    else {
+      this.article = this.articleService.getCurrentArticle();
+    }
   }
 
   getTitleCurrentArticle() : string {

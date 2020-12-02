@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Article } from '../models/article.model';
 
 import { Tools } from '../tools/tools';
@@ -9,7 +10,7 @@ import { RequestApiService } from './request-api.service';
   providedIn: 'root'
 })
 export class ArticleService {
-  
+
   articles      : Array<Article>;
   currentArticle: Article;
 
@@ -18,6 +19,7 @@ export class ArticleService {
   ) { 
     this.articles       = [];
     this.currentArticle = new Article(Tools.generateFackId());
+    this.reloadArticles();
   }
 
   
@@ -40,10 +42,15 @@ export class ArticleService {
     }
   }
  
-  getArticle(articleId : number) : Maybe<Article> {
-    return this.articles.find(
-      (article : Article) => 
-        article.id === articleId
+  getArticle(articleId : number) : Promise<Maybe<Article>> {
+    return this.getArticles()
+    .then(
+      (articles) => {
+        return articles.find(
+          (article : Article) => 
+            article.id === articleId
+        )
+      }
     )
   }
 

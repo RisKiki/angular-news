@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Article } from 'src/app/models/article.model';
 import { ArticleService } from 'src/app/services/article.service';
-import { ETypeArticleView } from 'src/app/tools/enums';
 import { Tools } from 'src/app/tools/tools';
 
 @Component({
@@ -31,10 +30,6 @@ export class CreateNewsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  setTypeArticleView() : ETypeArticleView {
-    return ETypeArticleView.CREATE
   }
 
   onSubmit() : void {

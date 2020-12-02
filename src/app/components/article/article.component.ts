@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Article } from 'src/app/models/article.model';
 import { ArticleService } from 'src/app/services/article.service';
-import { ETypeArticleView } from 'src/app/tools/enums';
-import { Tools } from 'src/app/tools/tools';
+
+import { Maybe } from 'src/app/tools/type';
 
 @Component({
   selector: 'app-article',
@@ -12,37 +12,47 @@ import { Tools } from 'src/app/tools/tools';
 })
 export class ArticleComponent implements OnInit {
 
-  article: Article;
-
-  @Input() type: ETypeArticleView = ETypeArticleView.DISPLAY;
+  article: Maybe<Article>;
 
   constructor(
     private routeActivated: ActivatedRoute,
     private articleService: ArticleService
   ) {
-    this.article = this.initArticle();
   }
 
   ngOnInit(): void {
+    this.initArticle();
   }
 
-  initArticle() : Article {
-    return this.articleService.getCurrentArticle()
-  }
-
-  isCreate() : boolean {
-    return this.type === ETypeArticleView.CREATE;   
+  initArticle() : void {
+    this.routeActivated.params.subscribe(
+      (params : any) => {
+        if (params['articleId'])
+          this.article = this.articleService.getArticle(params['articleId']);
+        else 
+        this.article = this.articleService.getCurrentArticle();
+      }
+    )
   }
 
   getTitleCurrentArticle() : string {
+    if (this.article) 
+      return this.article.title
+
     return this.articleService.getCurrentArticle().title
   }
 
   getImageCurrentArticle() : string {
+    if (this.article)
+      return this.article.image
+
     return this.articleService.getCurrentArticle().image
   }
 
   getDescriptionCurrentArticle() : string {
+    if (this.article)
+      return this.article.description
+
     return this.articleService.getCurrentArticle().description
   }
 

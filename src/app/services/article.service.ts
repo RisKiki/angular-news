@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
 
 import { Tools } from '../tools/tools';
+import { Maybe } from '../tools/type';
 import { RequestApiService } from './request-api.service';
 
 @Injectable({
@@ -9,14 +10,13 @@ import { RequestApiService } from './request-api.service';
 })
 export class ArticleService {
   
-  articles : Array<Article>;
-
-  currentArticle : Article;
+  articles      : Array<Article>;
+  currentArticle: Article;
 
   constructor(
     private requestApiService : RequestApiService
   ) { 
-    this.articles = [];
+    this.articles       = [];
     this.currentArticle = new Article(Tools.generateFackId());
   }
 
@@ -40,12 +40,11 @@ export class ArticleService {
     }
   }
  
-  getArticle(articleId : number) : Article {
-    const index : number = this.articles.findIndex(
+  getArticle(articleId : number) : Maybe<Article> {
+    return this.articles.find(
       (article : Article) => 
         article.id === articleId
     )
-    return this.articles[index]
   }
 
   addArticle(article : Article) : Promise<Article> {

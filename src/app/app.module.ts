@@ -28,6 +28,7 @@ import { EditorModule } from "@tinymce/tinymce-angular";
 import { CreateNewsComponent } from './components/create-news/create-news.component';
 import { Error404Component } from './components/error404/error404.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ContactComponent } from './components/contact/contact.component';
     ArticlePreviewComponent,
     CreateNewsComponent,
     Error404Component,
-    ContactComponent
+    ContactComponent,
+    FooterComponent
   ],
   imports: [
     AngularEditorModule,

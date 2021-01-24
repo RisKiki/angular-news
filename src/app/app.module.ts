@@ -9,6 +9,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
 
+import {MatSelectModule} from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,6 +32,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { AuthInterceptor } from './auth.interceptor';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { AuthInterceptor } from './auth.interceptor';
     CreateNewsComponent,
     Error404Component,
     ContactComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     AngularEditorModule,
@@ -58,6 +61,7 @@ import { AuthInterceptor } from './auth.interceptor';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     MatGridListModule,

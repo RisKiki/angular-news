@@ -5,3 +5,11 @@ mat-form-field {
 .center {
     margin: auto;
 }
+
+.title {
+    text-align   : center;
+    font-weight  : bold;
+    font-size    : 4em;
+    margin-top   : 0.5em;
+    margin-bottom: 1em;
+}

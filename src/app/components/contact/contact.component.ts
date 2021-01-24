@@ -25,7 +25,6 @@ export class ContactComponent implements OnInit {
   submit() : void {
     console.log(this.contactForm.value)
     this.sended = true;
-
   }
 
 }

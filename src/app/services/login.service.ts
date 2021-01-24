@@ -9,7 +9,7 @@ import { RequestApiService } from './request-api.service';
 export class LoginService {
 
   currentUser : User    = new User();
-  logged      : boolean = false;
+  logged      : boolean = true;
 
   constructor(
     private requestApiService : RequestApiService

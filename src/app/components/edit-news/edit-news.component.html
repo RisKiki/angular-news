@@ -1,1 +1,54 @@
-<p>edit-news works!</p>
+<h1 class="title">Edit news !</h1>
+
+<form [formGroup]="creationForm" (ngSubmit)="onSubmit()">
+    <div class="container-fluid m-5">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <mat-form-field class="w-100 display-1">
+                        <mat-label>Titre</mat-label>
+                        <input matInput placeholder="Titre" formControlName="title" [value]="article.title">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="w-100">
+                        <mat-label>Image</mat-label>
+                        <input matInput placeholder="Image" formControlName="image" [value]="article.image">
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <editor
+                    style="width: 100%;"
+                    apiKey="qxoy7jymrjlivuno6zw8gmxb5aivctmj6570yh43v362sg71"
+                    [initialValue]="article.description"
+                    formControlName="description"
+                    [init]="{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                        'advlist autolink lists link image charmap print',
+                        'preview anchor searchreplace visualblocks code',
+                        'fullscreen insertdatetime media table paste',
+                        'help wordcount'
+                        ],
+                        toolbar:
+                        'undo redo | formatselect | bold italic | \
+                        alignleft aligncenter alignright alignjustify | \
+                        bullist numlist outdent indent | help'
+                    }"
+                    >
+                    </editor>
+                </div>
+                <div class="row">
+                        <button type="button" class="btn btn-warning center" (click)='onPreview()'>Prévisualisation</button>
+                        <button type="button" class="btn btn-success center" (click)='onSubmit()'>Sauvegarder</button>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <app-article class="center"></app-article>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

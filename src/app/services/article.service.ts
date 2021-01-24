@@ -29,6 +29,8 @@ export class ArticleService {
       (res : any) => {
         const articles : Array<Article> = Article.asArticles(res.data)
         this.articles = articles;
+        if (this.articles.length > 0)
+          this.setCurrentArticle(this.articles[0]);
         return articles
       }
     )
@@ -60,7 +62,17 @@ export class ArticleService {
       (res : any) => {
         const article : Article = Article.asArticle(res['data']);
         this.articles.push(article);
+        this.setCurrentArticle(article);
         return article;
+      }
+    )
+  }
+
+  updateArticle(article : Article) : Promise<any> {
+    return this.requestApiService.post('articles/update', article.asJson())
+    .then(
+      (res : any) => {
+        return res;
       }
     )
   }

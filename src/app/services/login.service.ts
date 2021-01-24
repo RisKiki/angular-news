@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { RequestApiService } from './request-api.service';
 
-import { Tools } from '../tools/tools';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class LoginService {
 
   constructor(
     private requestApiService : RequestApiService
-  ) { }
+  ) {}
 
   setCurrentUser(user : User) : void {
     this.currentUser = user;

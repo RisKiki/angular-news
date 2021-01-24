@@ -22,13 +22,15 @@ import { ArticleComponent } from './components/article/article.component';
 import { ArticlePreviewComponent } from './components/article-preview/article-preview.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { CreateNewsComponent } from './components/create-news/create-news.component';
 import { Error404Component } from './components/error404/error404.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
+
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,11 @@ import { FooterComponent } from './components/footer/footer.component';
     EditorModule
 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

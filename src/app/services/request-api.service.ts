@@ -9,7 +9,7 @@ export class RequestApiService {
 
   constructor(
     private httpClient : HttpClient
-  ) { }
+  ) {}
 
   get(route : string) : Promise<Object> {
     return this.httpClient.get(URL_API+route).toPromise();

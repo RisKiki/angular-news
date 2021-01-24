@@ -15,7 +15,7 @@ export class ArticleService {
   currentArticle: Article;
 
   constructor(
-    private requestApiService : RequestApiService
+    private requestApiService : RequestApiService,
   ) { 
     this.articles       = [];
     this.currentArticle = new Article(Tools.generateFackId());

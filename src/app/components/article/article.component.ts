@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/models/article.model';
 import { ArticleService } from 'src/app/services/article.service';
+import { LoginService } from 'src/app/services/login.service';
 
 import { Maybe } from 'src/app/tools/type';
 
@@ -16,7 +17,9 @@ export class ArticleComponent implements OnInit {
 
   constructor(
     private routeActivated: ActivatedRoute,
-    private articleService: ArticleService
+    private router        : Router,
+    private articleService: ArticleService,
+    private loginService  : LoginService
   ) {
   }
 
@@ -37,6 +40,15 @@ export class ArticleComponent implements OnInit {
     else {
       this.article = this.articleService.getCurrentArticle();
     }
+  }
+
+  isLogged() : boolean {
+    this.routeActivated.snapshot.url.filter((x : any) => x.path === "edit")
+    return this.loginService.isLogged() && this.routeActivated.snapshot.url.filter((x : any) => x.path === "edit" || x.path ==='create').length === 0;
+  }
+
+  editNewsClick(event : Event) : void {
+    this.router.navigate(['/edit']);
   }
 
   getTitleCurrentArticle() : string {

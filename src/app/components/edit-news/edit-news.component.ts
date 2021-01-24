@@ -12,8 +12,9 @@ import { ArticleService } from 'src/app/services/article.service';
 export class EditNewsComponent implements OnInit {
   articles : Array<Article>;
 
-  article: Article;
-  creationForm : FormGroup;
+  article     : Article;
+  creationForm: FormGroup;
+  isError     : boolean;
 
 
   constructor(
@@ -22,7 +23,7 @@ export class EditNewsComponent implements OnInit {
   ) {
     this.articles = this.articleService.articles;
     this.article = this.articleService.getCurrentArticle();
-    console.log(this.article)
+    this.isError = false;
     this.creationForm = new FormGroup({
       title      : new FormControl(this.article.title, [Validators.required]),
       image      : new FormControl(this.article.image, [Validators.required]),
@@ -50,10 +51,14 @@ export class EditNewsComponent implements OnInit {
       this.setArticleFromForm();
       this.articleService.updateArticle(this.article)
       .then(
-        (article : Article) => {
-          this.article = article;
-          this.articleService.setCurrentArticle(this.article);
-          this.router.navigate(['/article', this.article.id]);
+        (res : any) => {
+          if (res.status.success === 1) {
+            this.articleService.setCurrentArticle(this.article);
+            this.router.navigate(['/article', this.article.id]);
+          } else {
+            this.isError = true;
+          }
+          
         }
       );
     

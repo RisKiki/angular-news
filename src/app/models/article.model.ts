@@ -26,9 +26,10 @@ export class Article {
 
     asJson() : any {
         return {
-            title : this.title,
-            description : this.description,
-            image : this.image
+            id         : this.id,
+            title      : this.title,
+            description: this.description,
+            image      : this.image
         }
     }
 

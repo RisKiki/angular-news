@@ -7,18 +7,35 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
+
         <li class="nav-item active">
           <a class="nav-link"
              [routerLink]="['/accueil']">
             <button mat-button color="primary">Accueil</button>
           </a>
         </li>
+
         <li class="nav-item" *ngIf="isLogged()">
           <a class="nav-link"
           [routerLink]="['/create']">
             <button mat-button color="primary">Publier une news</button>
           </a>
         </li>
+
+        <li class="nav-item" *ngIf="isLogged()">
+          <a class="nav-link"
+          [routerLink]="['/edit']">
+            <button mat-button color="primary">Editer une news</button>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+          [routerLink]="['/about']">
+            <button mat-button color="primary">A propros de nous</button>
+          </a>
+        </li>
+
       </ul>
 
       <ul class = "navbar-nav">

@@ -7,7 +7,7 @@ WARNING : This application is for student experiences, DO NOT PUT PERSONNAL INFO
 ## Clone
 
 Run `git clone https://github.com/RisKiki/angular-news.git` to get the project. \
-Clones should be on master, if you want the application version whitout the request to API, you have to clone the v-1.0.0-NO-API branch.
+Clones should be on master, if you want the application version whitout the request to API, you have to clone the v-1.0.0-NO-API branch (not update).
 
 ## Development server
 

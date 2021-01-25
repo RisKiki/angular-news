@@ -8,13 +8,14 @@ import { CreateNewsComponent } from './components/create-news/create-news.compon
 import { EditNewsComponent } from './components/edit-news/edit-news.component';
 import { Error404Component } from './components/error404/error404.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   {path:"", component:AccueilComponent},
   {path:"accueil", component:AccueilComponent},
   {path:"about", component:AboutComponent},
-  {path:"create", component:CreateNewsComponent},
-  {path:"edit", component:EditNewsComponent},
+  {path:"create", component:CreateNewsComponent, canActivate: [AuthGuardService]},
+  {path:"edit", component:EditNewsComponent, canActivate: [AuthGuardService]},
   {path:"login", component:LoginComponent},
   {path:"contact", component:ContactComponent},
   {path:"article/:articleId", component:ArticleComponent},
